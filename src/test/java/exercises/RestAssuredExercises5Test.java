@@ -98,13 +98,14 @@ public class RestAssuredExercises5Test {
 	 * Check that two speed records have been set by cars
 	 * whose make ends on 'Benz'
 	 ******************************************************/
-	
 	@Test
 	public void checkTwoRecordsHaveBeenSetByCarsWhoseMakeEndOnBenz() {
-		
 		given().
-			spec(requestSpec).
-		when().
-		then();
+				spec(requestSpec).
+				when().
+				get("/xml/speedrecords").
+				then().
+				assertThat().
+				body("cars.car.findAll{it.@make.grep(~/.*Benz/)}.size()", equalTo(2));
 	}
 }
