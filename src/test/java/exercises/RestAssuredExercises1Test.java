@@ -29,7 +29,6 @@ public class RestAssuredExercises1Test {
 
     @Test
     public void checkResponseCodeForCorrectRequest() {
-
         given().
                 spec(requestSpec).
                 when().
@@ -46,7 +45,6 @@ public class RestAssuredExercises1Test {
 
     @Test
     public void checkResponseCodeForIncorrectRequest() {
-
         given().
                 spec(requestSpec).
                 when().
