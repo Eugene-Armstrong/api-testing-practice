@@ -98,13 +98,15 @@ public class RestAssuredExercises3Test {
      * Use it as a path parameter to /drivers/<driverId>.json
      * Check that the driver is German
      ******************************************************/
-
     @Test
     public void useExtractedDriverId() {
-
         given().
                 spec(requestSpec).
+                pathParam("driver", ninthDriverId).
                 when().
-                then();
+                get("/drivers/{driver}.json").
+                then().
+                assertThat().
+                body("MRData.DriverTable.Drivers[0].nationality",is("German"));
     }
 }
