@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItem;
 
 
 public class RestAssuredExercises1Test {
@@ -94,11 +95,13 @@ public class RestAssuredExercises1Test {
      **********************************************/
     @Test
     public void checkThereWasARaceAtSilverstoneIn2014() {
-
         given().
                 spec(requestSpec).
                 when().
-                then();
+                get("/2014/circuits.json").
+                then().
+                assertThat().
+                body("MRData.CircuitTable.Circuits.circuitId", hasItem("silverstone"));
     }
 
     /***********************************************
