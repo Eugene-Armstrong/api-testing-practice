@@ -1,6 +1,7 @@
 package exercises;
 
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -26,7 +27,6 @@ public class RestAssuredExercises1Test {
      * Send a GET request to /2016/drivers.json
      * and check that the response has HTTP status code 200
      ******************************************************/
-
     @Test
     public void checkResponseCodeForCorrectRequest() {
         given().
@@ -42,7 +42,6 @@ public class RestAssuredExercises1Test {
      * Send a GET request to /incorrect.json
      * and check that the answer has HTTP status code 404
      ******************************************************/
-
     @Test
     public void checkResponseCodeForIncorrectRequest() {
         given().
@@ -58,14 +57,16 @@ public class RestAssuredExercises1Test {
      * Send a GET request to /2016/drivers.json
      * and check that the response is in JSON format
      ******************************************************/
-
     @Test
     public void checkResponseContentTypeJson() {
 
         given().
                 spec(requestSpec).
                 when().
-                then();
+                get("/2016/drivers.json").
+                then().
+                assertThat().
+                contentType(ContentType.JSON);
     }
 
     /***********************************************
@@ -74,10 +75,8 @@ public class RestAssuredExercises1Test {
      * albert_park
      * Use /2014/1/circuits.json
      **********************************************/
-
     @Test
     public void checkTheFirstRaceOf2014WasAtAlbertPark() {
-
         given().
                 spec(requestSpec).
                 when().
@@ -89,7 +88,6 @@ public class RestAssuredExercises1Test {
      * season and check that it contains silverstone
      * Use /2014/circuits.json
      **********************************************/
-
     @Test
     public void checkThereWasARaceAtSilverstoneIn2014() {
 
