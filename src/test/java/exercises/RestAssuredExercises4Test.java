@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
 
 public class RestAssuredExercises4Test {
 
@@ -41,7 +42,16 @@ public class RestAssuredExercises4Test {
     private static String accessToken;
 
     public static void retrieveOAuthToken() {
-
+        accessToken = given().
+                spec(requestSpec).
+                auth().
+                preemptive().
+                basic("oauth", "gimmeatoken").
+                when().
+                get("/oauth2/token").
+                then().
+                extract().
+                path("accessToken");
     }
 
     /*******************************************************
@@ -55,11 +65,15 @@ public class RestAssuredExercises4Test {
 
     @Test
     public void checkNumberOfPayments() {
-
         given().
                 spec(requestSpec).
+                auth().
+                oauth2("accessToken").
                 when().
-                then();
+                get("/payments").
+                then().
+                assertThat().
+                body("paymentsCount",is(4));
     }
 
     /*******************************************************
@@ -68,10 +82,8 @@ public class RestAssuredExercises4Test {
      * answered within 100 ms
      * Use /2014/circuits.json
      ******************************************************/
-
     @Test
     public void checkResponseTimeFor2014CircuitList() {
-
         given().
                 spec(requestSpec).
                 when().
