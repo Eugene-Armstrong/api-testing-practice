@@ -107,11 +107,11 @@ public class RestAssuredExercises2Test {
 	 * /2015/1/drivers/max_verstappen/pitstops.json)
 	 * and verify the number of pit stops made
 	 ******************************************************/
-	@Test
-	public void checkNumberOfPitstopsForMaxVerstappenIn2015() {
-		given().
-				spec(requestSpec).
-				when().
-				then();
-	}
+//	@Test
+//	public void checkNumberOfPitstopsForMaxVerstappenIn2015() {
+//		given().
+//				spec(requestSpec).
+//				when().
+//				then();
+//	}
 }
