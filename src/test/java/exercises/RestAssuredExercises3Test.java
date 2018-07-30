@@ -80,14 +80,16 @@ public class RestAssuredExercises3Test {
      * Use /2014/1/circuits.json
      * Additionally, check that the circuit is located in Melbourne
      ******************************************************/
-
     @Test
     public void useResponseSpecification() {
-
         given().
                 spec(requestSpec).
                 when().
-                then();
+                get("/2014/1/circuits.json").
+                then().
+                spec(responseSpec).
+                and().
+                body("MRData.CircuitTable.Circuits[0].Location.locality",is("Melbourne"));
     }
 
     /*******************************************************
