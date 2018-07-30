@@ -71,7 +71,6 @@ public class RestAssuredExercises3Test {
                 extract().
                 path("MRData.DriverTable.Drivers[8].driverId");
         //System.out.println(ninthDriverId);
-
     }
 
     /*******************************************************
