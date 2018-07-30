@@ -56,7 +56,7 @@ public class RestAssuredExercises6Test {
 		Car myCar = given().
 				spec(requestSpec).
 				when().
-				get("/cars/getcar/alfaromeogiulia").
+				get("/car/getcar/alfaromeogiulia").
 				as(Car.class);
 		// Put your assert here
 		assertThat(myCar.getYear(), is(2016));
