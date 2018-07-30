@@ -69,20 +69,23 @@ public class RestAssuredExercises2Test {
 	 ******************************************************/
 	static Stream<Arguments> numberDataProvider() {
 		return Stream.of(
-				Arguments.of("max_verstappen", "1")
+				Arguments.of("1","1"),
+				Arguments.of("2","3"),
+				Arguments.of("3","2"),
+				Arguments.of("4","2")
 		);
 	}
 	@ParameterizedTest
 	@MethodSource("numberDataProvider")
-	public void checkNumberOfPitStops(String driver, String number){
+	public void checkNumberOfPitStops(String round, String number){
 		given().
 				spec(requestSpec).
-				pathParam("driver", driver).
+				pathParam("round", round).
 				when().
-				get("2015/2/drivers/{driver}/pitstops.json").
+				get("2015/{round}/drivers/max_verstappen/pitstops.json").
 				then().
 				assertThat().
-				body("MRData.RaceTable.Races.PitStops.size()", equalTo(parseInt(number)));
+				body("MRData.total", equalTo(number));
 	}
 
 	/*******************************************************

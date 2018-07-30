@@ -29,7 +29,6 @@ public class RestAssuredExercises3Test {
                 build();
     }
 
-
     /*******************************************************
      * Create a static ResponseSpecification that checks whether:
      * - the response has statusCode 200
