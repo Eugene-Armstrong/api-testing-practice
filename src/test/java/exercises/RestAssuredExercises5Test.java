@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 
 public class RestAssuredExercises5Test {
 
@@ -29,11 +30,13 @@ public class RestAssuredExercises5Test {
 	
 	@Test
 	public void checkThirdSpeedRecordWasSetIn1955() {
-		
 		given().
-			spec(requestSpec).
-		when().
-		then();
+				spec(requestSpec).
+				when().
+				get("/xml/speedrecords").
+				then().
+				assertThat().
+				body("cars.car[2].year", equalTo("1955"));
 	}
 	
 	/*******************************************************
